@@ -14,10 +14,16 @@ public class Platform : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+       
     }
 
-    
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            collision.gameObject.GetComponent<Player>().isJumping = false;
+        }
+    }
 
     private void OnCollisionExit(Collision collision)
     {
