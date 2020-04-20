@@ -5,7 +5,7 @@ using UnityEngine;
 public class Parallax : MonoBehaviour
 {
     private float length, pos0;
-    public GameObject pseudoPlayer;
+    public GameObject cam;
     public float parallaxEffect;
 
     void Start()
@@ -16,11 +16,12 @@ public class Parallax : MonoBehaviour
 
     void FixedUpdate()
     {
-        float temp = pseudoPlayer.transform.position.x * (1-parallaxEffect);
-        float dist = pseudoPlayer.transform.position.x * parallaxEffect;
+        float temp = cam.transform.position.x * (1-parallaxEffect);
+        float dist = cam.transform.position.x * parallaxEffect;
 
         transform.position = new Vector3(pos0 + dist, transform.position.y, transform.position.z);
 
         if (temp > pos0 + length) pos0 += length;
+        else if (temp < pos0 - length) pos0 -= length;
     }
 }
